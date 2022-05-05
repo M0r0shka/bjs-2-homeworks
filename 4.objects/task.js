@@ -11,30 +11,20 @@ Student.prototype.setSubject = function (subjectName) {
 Student.prototype.addMark = function (mark) {
   if (this.marks === undefined) {
     this.marks = [];
-    this.marks.push(mark);
-  } else {
-    this.marks.push(mark);
   }
+  this.marks.push(mark);
 }
 
 Student.prototype.addMarks = function (...marks) {
   if (this.marks === undefined) {
-    this.marks = Object.assign(marks);
-  } else {
-    for (let mark of marks) {
-      this.marks.push(mark);
-    }
+    this.marks = [];
   }
+  this.marks.push(...marks);
 }
 
 Student.prototype.getAverage = function () {
   if (this.marks !== undefined) {
-    const sum = this.marks.reduce((acc, item, idx, arr) => {
-      {
-        acc = acc + item;
-      }
-      return acc;
-    }, 0);
+    const sum = this.marks.reduce((acc, item) => acc + item, 0);
     return (sum / this.marks.length);
   }
 }

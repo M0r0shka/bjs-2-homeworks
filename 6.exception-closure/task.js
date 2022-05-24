@@ -7,16 +7,14 @@ function parseCount(value) {
 }
 
 function validateCount(value) {
-    let parsed;
     try {
-        parsed = parseCount(value);
-    } catch (err) {
+        return parseCount(value);
+    }
+    catch (err) {
         return err;
     }
-    if (typeof parsed == 'number') {
-        return parsed;
-    }
 }
+
 
 class Triangle {
     constructor(sideA, sideB, sideC) {
@@ -24,19 +22,19 @@ class Triangle {
             this.sideB = sideB,
             this.sideC = sideC
 
-        if ((this.sideA + this.sideB) < this.sideC ||
-            (this.sideB + this.sideC) < this.sideA ||
-            (this.sideA + this.sideC < this.sideB)) {
+        if ((sideA + sideB) < sideC ||
+            (sideB + sideC) < sideA ||
+            (sideA + sideC < sideB)) {
             throw new Error('Треугольник с такими сторонами не существует');
         }
     }
 
-    getPerimetr() {
+    getPerimeter() {
         return (this.sideA + this.sideB + this.sideC)
     }
 
     getArea() {
-        let p = 0.5 * (this.sideA + this.sideB + this.sideC)
+        let p = 0.5 * this.getPerimeter();
         let s = Math.sqrt(p * (p - this.sideA) * (p - this.sideB) * (p - this.sideC));
         return Number(s.toFixed(3));
     }
@@ -49,13 +47,12 @@ function getTriangle(sideA, sideB, sideC) {
     catch (err) {
         return {
             getArea() {
-                return ('Ошибка! Треугольник не существует.')
+                return ('Ошибка! Треугольник не существует')
             },
-            getPerimetr() {
-                return 'Ошибка! Треугольник не существует.'
+            getPerimeter() {
+                return 'Ошибка! Треугольник не существует'
             }
         }
     }
 
 }
-

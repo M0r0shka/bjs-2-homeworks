@@ -50,7 +50,7 @@ function getTriangle(sideA, sideB, sideC) {
                 return ('Ошибка! Треугольник не существует')
             },
             getPerimeter() {
-                return 'Ошибка! Треугольник не существует'
+                return ('Ошибка! Треугольник не существует')
             }
         }
     }
